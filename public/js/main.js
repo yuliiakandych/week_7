@@ -38,7 +38,7 @@ const myVM = (() => {
 
          let imgSrc = this.previousElementSibling.getAttribute('src');
 
-         let url = `/${this.getAttribute('href')}`; 
+         let url = `/users/${this.getAttribute('href')}`; 
 
          fetch(url) //go get the data
          .then(res => res.json())
