@@ -31,11 +31,22 @@ router.get('/:id', (req, res) => {
     sql.query (query, (err, result) => {
         if (err) { throw err; console.log(err); }
 
-        console.log(result); // should see objects wrapped in an array
+        console.log(result[0].social); // should see objects wrapped in an array
 
-        // render the home view with dynamic data
-        //res.render('home', { people: result });
+        result[0].social = result[0].social.split(",").map(function(item) {
+           item = item.trim();   //remove extrs spaces from each world
 
+            return item;
+        });
+
+        console.log('after split:', result[0]);
+
+
+        //render the home view with dynamic data
+        // res.render('home', { people: result });
+
+//send the DB query back to the browser
+         res.json(result[0]);
         // , { data: result }
     })
 })
